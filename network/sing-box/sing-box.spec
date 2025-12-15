@@ -120,7 +120,7 @@ install -dm755 %{buildroot}%{_datadir}/%{name}
 
 %if 0%{?fedora} || 0%{?suse_version}
 %post
-%systemd_post ${name}.service
+%systemd_post %{name}.service
 
 %preun
 %systemd_preun %{name}.service
