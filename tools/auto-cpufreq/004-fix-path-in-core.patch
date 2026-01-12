@@ -20,7 +20,7 @@ index f03e7de..23ad02c 100755
  CPUS = os.cpu_count()
  
  
-@@ -280,16 +280,16 @@ def cpufreqctl():
+@@ -306,16 +306,16 @@ def cpufreqctl():
      """
      deploy cpufreqctl.auto-cpufreq script
      """
@@ -42,7 +42,7 @@ index f03e7de..23ad02c 100755
  
  def footer(l=79): print("\n" + "-" * l + "\n")
  
-@@ -316,12 +316,12 @@ def deploy_daemon():
+@@ -342,12 +342,12 @@ def deploy_daemon():
      auto_cpufreq_stats_path.touch(exist_ok=True)
  
      print("\n* Deploy auto-cpufreq install script")
@@ -59,7 +59,7 @@ index f03e7de..23ad02c 100755
  
      # output warning if gnome power profile is running
      gnome_power_detect_install()
-@@ -331,7 +331,7 @@ def deploy_daemon():
+@@ -357,7 +357,7 @@ def deploy_daemon():
  
      tlp_service_detect() # output warning if TLP service is detected
  
@@ -68,7 +68,7 @@ index f03e7de..23ad02c 100755
  
  def deploy_daemon_performance():
      print("\n" + "-" * 21 + " Deploying auto-cpufreq as a daemon (performance) " + "-" * 22 + "\n")
-@@ -349,10 +349,10 @@ def deploy_daemon_performance():
+@@ -375,10 +375,10 @@ def deploy_daemon_performance():
      auto_cpufreq_stats_path.touch(exist_ok=True)
  
      print("\n* Deploy auto-cpufreq install script")
@@ -81,7 +81,7 @@ index f03e7de..23ad02c 100755
  
      # output warning if gnome power profile is running
      gnome_power_detect_install()
-@@ -361,11 +361,11 @@ def deploy_daemon_performance():
+@@ -387,11 +387,11 @@ def deploy_daemon_performance():
     
      tlp_service_detect() # output warning if TLP service is detected
  
@@ -95,7 +95,7 @@ index f03e7de..23ad02c 100755
          print("\nauto-cpufreq daemon is not installed.\n")
          sys.exit(1)
  
-@@ -380,10 +380,13 @@ def remove_daemon():
+@@ -406,10 +406,13 @@ def remove_daemon():
      tuned_svc_enable()
  
      # run auto-cpufreq daemon remove script
