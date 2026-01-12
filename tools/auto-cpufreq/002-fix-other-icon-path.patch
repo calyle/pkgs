@@ -2,7 +2,7 @@ diff --git a/auto_cpufreq/gui/objects.py b/auto_cpufreq/gui/objects.py
 index d2a3435..2f01cd3 100644
 --- a/auto_cpufreq/gui/objects.py
 +++ b/auto_cpufreq/gui/objects.py
-@@ -193,7 +193,7 @@ class AboutDialog(Gtk.Dialog):
+@@ -239,7 +239,7 @@ class AboutDialog(Gtk.Dialog):
          self.add_button("Close", Gtk.ResponseType.CLOSE)
          self.set_default_size(400, 350)
          img_buffer = GdkPixbuf.Pixbuf.new_from_file_at_scale(
