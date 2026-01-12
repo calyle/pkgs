@@ -14,5 +14,5 @@ tools,yazi,yazi,sxyazi,v26.1.4,release,main
 tools,ghostty,ghostty,ghostty-org,v1.2.3,tag,main
 tools,scrcpy,scrcpy,Genymobile,v3.3.4,release,master
 lost,eza,eza,eza-community,v0.23.4,release,main
-tools,resvg,resvg,linebender,v0.45.1,release,main
+tools,resvg,resvg,linebender,v0.46.0,release,main
 lost,rust-starship,starship,starship,v1.24.2,release,master
