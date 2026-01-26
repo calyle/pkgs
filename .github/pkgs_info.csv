@@ -6,7 +6,7 @@ tools,wezterm,wezterm,wezterm,05343b3,commit,main
 network,sing-box,sing-box,SagerNet,v1.12.17,release,main
 network,sing-geoip,sing-geoip,SagerNet,20260112,release,main
 network,sing-geosite,sing-geosite,SagerNet,20260124151154,release,main
-zsh-users,zsh-completions,zsh-completions,zsh-users,c31ad08,commit,master
+zsh-users,zsh-completions,zsh-completions,zsh-users,7dd26c5,commit,master
 lost,neofetch,neofetch,dylanaraps,ccd5d9f,commit,master
 tools,neohtop,neohtop,Abdenasser,v1.2.0,release,main
 tools,auto-cpufreq,auto-cpufreq,AdnanHodzic,v3.0.0,release,master
