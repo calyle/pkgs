@@ -1,6 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -175,16 +175,6 @@
+@@ -201,17 +201,6 @@
    "rustls",
  ] }
 
@@ -11,6 +11,7 @@
 -  "signatures",
 -  "rustls",
 -] }
+-zipsign-api = "0.1"
 -sevenz-rust = "0.6"
 -winapi = { version = "0.3.9", features = ["consoleapi", "minwindef"] }
 -
