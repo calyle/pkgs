@@ -3,7 +3,7 @@ tools,mise,mise,jdx,v2026.2.24,release,main
 tools,usage,usage,jdx,v2.18.2,release,main
 tools,zellij,zellij,zellij-org,v0.43.1,release,main
 tools,wezterm,wezterm,wezterm,05343b3,commit,main
-network,sing-box,sing-box,SagerNet,v1.12.22,release,main
+network,sing-box,sing-box,SagerNet,v1.13.0,release,main
 network,sing-geoip,sing-geoip,SagerNet,20260212,release,main
 network,sing-geosite,sing-geosite,SagerNet,20260220102217,release,main
 zsh-users,zsh-completions,zsh-completions,zsh-users,684021f,commit,master
