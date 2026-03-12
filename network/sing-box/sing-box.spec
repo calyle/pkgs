@@ -82,20 +82,16 @@ fi
 tar xf ${PACKAGE}
 export PATH="$(pwd)/go/bin:$PATH"
 
-# build stable release
-git checkout main
-
-_tags=with_gvisor,with_quic,with_dhcp,with_wireguard,with_utls,with_acme,with_clash_api,with_tailscale
+TAGS="$(cat release/DEFAULT_BUILD_TAGS),with_purego"
+LDFLAGS_SHARED=$(cat release/LDFLAGS)
 CGO_ENABLED=0 go build \
     -v \
     -trimpath \
     -buildmode=pie \
     -mod=readonly \
     -modcacherw \
-    -tags "$_tags" \
-    -ldflags "
-        -X \"github.com/sagernet/sing-box/constant.Version=%{version}\"
-        -s -w -buildid=" \
+    -tags "$TAGS" \
+    -ldflags "-X github.com/sagernet/sing-box/constant.Version=%{version} ${LDFLAGS_SHARED} -s -w -buildid=" \
     ./cmd/sing-box
 
 
