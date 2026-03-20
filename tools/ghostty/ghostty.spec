@@ -128,6 +128,16 @@ BuildArch:      noarch
 %description    zsh-shell-integration
 Zsh shell integration for %{name}
 
+%package        nushell-shell-integration
+Summary:        Nushell shell integration for %{name}
+Requires:       %{name} = %{version}
+Requires:       nu
+Supplements:    (%{name} and nu)
+BuildArch:      noarch
+
+%description    nushell-shell-integration
+Nushell shell integration for %{name}
+
 %package        themes
 Summary:        Build-in themes for %{name}
 Requires:       %{name} = %{version}
@@ -202,6 +212,13 @@ emulator that uses platform-native UI and GPU acceleration.
 
 This holds the terminfo files for ghostty.
 
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name} = %{version}
+
+%description    devel
+Development files for %{name}
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
 %autosetup
@@ -272,6 +289,12 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %files zsh-shell-integration
 %{_datadir}/ghostty/shell-integration/zsh
 
+%files nushell-shell-integration
+%dir %{_datadir}/ghostty/shell-integration/nushell
+%dir %{_datadir}/ghostty/shell-integration/nushell/vendor
+%dir %{_datadir}/ghostty/shell-integration/nushell/vendor/autoload
+%{_datadir}/ghostty/shell-integration/nushell/vendor/autoload/ghostty.nu
+
 %files themes
 %{_datadir}/ghostty/themes
 
@@ -299,7 +322,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/vim/vimfiles/compiler/ghostty.vim
 
 %files systemd
-%{_datadir}/systemd/user
+%dir %{_datadir}/systemd/user
 %{_datadir}/systemd/user/app-com.mitchellh.ghostty.service
 
 %files terminfo
@@ -307,6 +330,14 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/terminfo/g/ghostty
 %endif
 %{_datadir}/terminfo/x/xterm-ghostty
+
+%files devel
+%dir %{_prefix}/include/ghostty
+%dir %{_prefix}/include/ghostty/vt
+%{_prefix}/include/ghostty/vt.h
+%{_prefix}/include/ghostty/vt/*
+%{_prefix}/lib/libghostty-vt.so*
+%{_prefix}/share/pkgconfig/libghostty-vt.pc
 
 %changelog
 * DATE Jo Carllyle <96739684+calyle@users.noreply.github.com>
