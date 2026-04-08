@@ -1,9 +1,9 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -201,17 +201,6 @@
-   "rustls",
- ] }
-
+@@ -215,17 +215,6 @@ self_update = { version = "0.42", optional = true, default-features = false, fea
+ landlock = "0.4"
+ seccompiler = "0.5"
+ 
 -[target.'cfg(windows)'.dependencies]
 -self_update = { version = "0.42", optional = true, default-features = false, features = [
 -  "archive-zip",
