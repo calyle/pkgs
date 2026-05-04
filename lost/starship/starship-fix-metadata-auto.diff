@@ -21,7 +21,7 @@
  nix = { version = "0.31.2", default-features = false, features = ["feature", "fs", "user"] }
  
 @@ -114,9 +101,6 @@
- shadow-rs = { version = "1.7.1", default-features = false, features = ["build"] }
+ shadow-rs = { version = "2.0.0", default-features = false, features = ["build"] }
  dunce = "1.0.5"
  
 -[target.'cfg(windows)'.build-dependencies]
