@@ -19,5 +19,5 @@ lost,rust-starship,starship,starship,v1.25.1,release,master
 wm,xdg-desktop-portal-hyprland,xdg-desktop-portal-hyprland,hyprwm,v1.3.12,release,master
 wm,hyprwayland-scanner,hyprwayland-scanner,hyprwm,v0.4.6,release,main
 wm,hyprlang,hyprlang,hyprwm,v0.6.8,release,main
-wm,hyprutils,hyprutils,hyprwm,v0.12.0,release,main
+wm,hyprutils,hyprutils,hyprwm,v0.13.0,release,main
 wm,hyprland-protocols,hyprland-protocols,hyprwm,v0.7.0,release,main
