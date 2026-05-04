@@ -15,7 +15,7 @@ tools,ghostty,ghostty,ghostty-org,v1.3.1,tag,main
 tools,scrcpy,scrcpy,Genymobile,v3.3.4,release,master
 lost,eza,eza,eza-community,v0.23.4,release,main
 tools,resvg,resvg,linebender,v0.47.0,release,main
-lost,rust-starship,starship,starship,v1.25.0,release,master
+lost,rust-starship,starship,starship,v1.25.1,release,master
 wm,xdg-desktop-portal-hyprland,xdg-desktop-portal-hyprland,hyprwm,v1.3.12,release,master
 wm,hyprwayland-scanner,hyprwayland-scanner,hyprwm,v0.4.6,release,main
 wm,hyprlang,hyprlang,hyprwm,v0.6.8,release,main
