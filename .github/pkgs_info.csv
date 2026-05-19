@@ -1,7 +1,7 @@
 project name,package name,repo name,author,latest version,mode,branch
 tools,mise,mise,jdx,v2026.5.12,release,main
 tools,usage,usage,jdx,v3.3.0,release,main
-tools,zellij,zellij,zellij-org,v0.44.1,release,main
+tools,zellij,zellij,zellij-org,v0.44.3,release,main
 tools,wezterm,wezterm,wezterm,577474d,commit,main
 network,sing-box,sing-box,SagerNet,v1.13.11,release,main
 network,sing-geoip,sing-geoip,SagerNet,20260412,release,main
