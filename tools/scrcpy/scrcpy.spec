@@ -14,7 +14,7 @@ Version:        VERSION
 
 
 Name:           %{pkgname}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Display and control your Android device
 License:        ASL 2.0
 
@@ -26,7 +26,7 @@ BuildRequires:  meson gcc
 BuildRequires:  java-devel >= 11
 BuildRequires:  desktop-file-utils
 
-BuildRequires:  pkgconfig(sdl2)
+BuildRequires:  pkgconfig(sdl3)
 BuildRequires:  pkgconfig(ffms2)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(libavdevice)
@@ -82,7 +82,7 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{pkgname}{,-console
 %{_bindir}/%{pkgname}
 %{_datadir}/%{pkgname}
 %{_mandir}/man1/%{pkgname}.1*
-%{_datadir}/icons/hicolor/*/apps/%{pkgname}.png
+%{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/applications/*.desktop
 
 %files bash-completion
