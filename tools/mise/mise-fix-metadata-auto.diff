@@ -1,6 +1,6 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -221,18 +221,6 @@
+@@ -221,17 +221,6 @@
  landlock = "0.4"
  seccompiler = "0.5"
  
@@ -13,7 +13,6 @@
 -  "rustls",
 -] }
 -zipsign-api = "0.2"
--sevenz-rust = "0.6"
 -winapi = { version = "0.3.9", features = ["consoleapi", "minwindef"] }
 -
  [build-dependencies]
