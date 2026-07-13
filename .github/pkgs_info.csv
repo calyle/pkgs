@@ -13,7 +13,7 @@ tools,auto-cpufreq,auto-cpufreq,AdnanHodzic,v3.0.0,release,master
 tools,yazi,yazi,sxyazi,v26.5.6,release,main
 tools,ghostty,ghostty,ghostty-org,v1.3.1,tag,main
 tools,scrcpy,scrcpy,Genymobile,v4.1,release,master
-lost,eza,eza,eza-community,v0.23.4,release,main
+lost,eza,eza,eza-community,v0.23.5,release,main
 tools,resvg,resvg,linebender,v0.47.0,release,main
 lost,rust-starship,starship,starship,v1.26.0,release,master
 wm,xdg-desktop-portal-hyprland,xdg-desktop-portal-hyprland,hyprwm,v1.3.12,release,master
