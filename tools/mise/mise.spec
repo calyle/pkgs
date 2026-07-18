@@ -26,6 +26,15 @@ BuildRequires:  gcc
 BuildRequires:  pkgconfig(openssl)
 %if 0%{?suse_version}
 BuildRequires:  curl
+# nasm is required by aws-lc-sys on x86_64 to compile ASM crypto routines.
+# Available in standard Fedora repos; on RHEL/EPEL it lives in CRB (not
+# enabled in COPR by default) so we use prebuilt NASM objects there instead
+# (see AWS_LC_SYS_PREBUILT_NASM in the %%build section).
+%endif
+%if 0%{?fedora}
+%ifarch x86_64
+BuildRequires:  nasm
+%endif
 %endif
 
 
@@ -102,6 +111,27 @@ Zsh setup script for %{name}
 %autosetup -p1
 
 %build
+# aws-lc-sys compiles and links its memcmp compiler probe in one command. It
+# intentionally ignores CFLAGS, but still applies Fedora's LDFLAGS, whose
+# hardened linker specs produce a PIE executable. Add the matching compiler
+# flag so the probe's object file is position-independent as well.
+%if 0%{?fedora}
+%ifarch x86_64
+export LDFLAGS="${LDFLAGS:-} -fPIE"
+%endif
+%endif
+
+# On RHEL/EPEL x86_64, nasm lives in CRB which is not enabled in COPR
+# chroots. Use prebuilt NASM objects bundled inside the aws-lc-sys crate
+# instead. This works at all Cargo profile/optimization levels including
+# release (unlike AWS_LC_SYS_NO_ASM which is debug-only and panics at
+# release profile).
+%if 0%{?rhel}
+%ifarch x86_64
+export AWS_LC_SYS_PREBUILT_NASM=1
+%endif
+%endif
+
 # install toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
