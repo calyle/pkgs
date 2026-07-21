@@ -36,6 +36,7 @@ BuildRequires:  pkgconfig(wayland-scanner)
 BuildRequires:  pkgconfig(hyprlang)
 BuildRequires:  pkgconfig(hyprwayland-scanner)
 BuildRequires:  pkgconfig(hyprutils)
+BuildRequires:  pkgconfig(uuid)
 
 Requires:       dbus-common
 Requires:       dbus
