@@ -23,6 +23,7 @@ Patch0:         mise-fix-metadata-auto.diff
 BuildRequires:  rust
 BuildRequires:  cargo
 BuildRequires:  gcc
+BuildRequires:  cmake
 BuildRequires:  pkgconfig(openssl)
 %if 0%{?suse_version}
 BuildRequires:  curl
