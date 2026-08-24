@@ -1,6 +1,6 @@
 project name,package name,repo name,author,latest version,mode,branch
 tools,mise,mise,jdx,v2026.8.11,release,main
-tools,usage,usage,jdx,v5.1.0,release,main
+tools,usage,usage,jdx,v6.1.1,release,main
 tools,zellij,zellij,zellij-org,v0.44.3,release,main
 tools,wezterm,wezterm,wezterm,9c04f79,commit,main
 network,sing-box,sing-box,SagerNet,v1.13.18,release,main
