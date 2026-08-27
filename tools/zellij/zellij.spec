@@ -104,20 +104,11 @@ do
   ./target/release/%{name} setup --generate-completion "$shell" > target/%{name}."$shell"
 done
 
-# get pandoc
-pandoc_ver=$(curl -s https://api.github.com/repos/jgm/pandoc/releases/latest | grep -oP -m 1 '"tag_name": "\K(.*)(?=")')
-curl -L -O https://github.com/jgm/pandoc/releases/download/${pandoc_ver}/pandoc-${pandoc_ver}-linux-%{arch}.tar.gz
-tar xf pandoc-${pandoc_ver}-linux-%{arch}.tar.gz && rm -f pandoc-${pandoc_ver}-linux-%{arch}.tar.gz
-chmod +x pandoc-${pandoc_ver}/bin/pandoc
-# generate man doc
-./pandoc-${pandoc_ver}/bin/pandoc docs/MANPAGE.md -s -t man -o target/%{name}.1
-
 %install
 install -Dsm755 -T target/release/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dm644  -T ./target/%{name}.bash  %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dm644  -T ./target/%{name}.fish  %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
 install -Dm644  -T ./target/%{name}.zsh   %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
-install -Dm644  -T ./target/%{name}.1     %{buildroot}%{_mandir}/man1/%{name}.1
 install -Dm644  -T %{_builddir}/%{name}-%{version}/assets/logo.png         %{buildroot}%{_datadir}/pixmaps/%{name}.png
 install -Dm644  -T %{_builddir}/%{name}-%{version}/assets/%{name}.desktop  %{buildroot}%{_datadir}/applications/%{name}.desktop
 
@@ -128,14 +119,12 @@ cp -av example/themes %{buildroot}%{_datadir}/%{name}
 
 %files
 %license LICENSE.md LICENSE.dependencies
-%doc README.md docs/ARCHITECTURE.md docs/MANPAGE.md docs/TERMINOLOGY.md docs/THIRD_PARTY_INSTALL.md
+%doc README.md docs/ARCHITECTURE.md docs/TERMINOLOGY.md docs/THIRD_PARTY_INSTALL.md
 %{_bindir}/%{name}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/themes
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
-
-%{_mandir}/man1/*
 
 %files bash-completion
 %{_datadir}/bash-completion/*
