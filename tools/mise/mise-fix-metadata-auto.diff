@@ -1,29 +1,22 @@
 --- a/Cargo.toml
 +++ b/Cargo.toml
-@@ -298,28 +298,6 @@
+@@ -305,21 +305,6 @@
  core-foundation = "0.10"
  core-foundation-sys = "0.8"
  
 -[target.'cfg(windows)'.dependencies]
--self_update = { version = "1", optional = true, default-features = false, features = [
--  "archive-zip",
--  "compression-zip-deflate",
--  "signatures",
--  "reqwest",
--  "github",
--  "progress-bar",
--] }
--zipsign-api = "0.2"
 -winapi = { version = "0.3", features = ["consoleapi", "minwindef"] }
 -windows-sys = { version = "0.61", features = [
 -  "Win32_Globalization",
 -  "Win32_Security",
 -  "Win32_Security_Authorization",
 -  "Win32_Storage_FileSystem",
+-  "Win32_System_Console",
 -  "Win32_System_JobObjects",
 -  "Win32_System_Diagnostics_ToolHelp",
 -  "Win32_System_SystemServices",
 -  "Win32_System_Threading",
+-  "Win32_UI_WindowsAndMessaging",
 -] }
 -
  [build-dependencies]
