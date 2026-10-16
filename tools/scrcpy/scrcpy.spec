@@ -30,6 +30,7 @@ BuildRequires:  pkgconfig(sdl3)
 BuildRequires:  pkgconfig(ffms2)
 BuildRequires:  pkgconfig(libusb-1.0)
 BuildRequires:  pkgconfig(libavdevice)
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  vulkan-loader
 
 Requires:       android-tools
