@@ -1,8 +1,6 @@
-diff --git a/auto_cpufreq/core.py b/auto_cpufreq/core.py
-index f03e7de..23ad02c 100755
 --- a/auto_cpufreq/core.py
 +++ b/auto_cpufreq/core.py
-@@ -23,14 +23,14 @@ filterwarnings("ignore")
+@@ -25,16 +25,16 @@
  
  # add path to auto-cpufreq executables for GUI
  if "PATH" in os.environ:
@@ -15,12 +13,14 @@ index f03e7de..23ad02c 100755
  # ToDo:
  # - replace get system/CPU load from: psutil.getloadavg() | available in 5.6.2)
  
--SCRIPTS_DIR = Path("/usr/local/share/auto-cpufreq/scripts/")
-+SCRIPTS_DIR = Path("/usr/share/auto-cpufreq/scripts/")
+ SOURCE_INSTALL_ROOT = Path("/opt/auto-cpufreq")
+ SOURCE_INSTALL_SCRIPTS_DIR = SOURCE_INSTALL_ROOT / "current/share/scripts"
+-SCRIPTS_DIR = SOURCE_INSTALL_SCRIPTS_DIR if SOURCE_INSTALL_SCRIPTS_DIR.is_dir() else Path("/usr/local/share/auto-cpufreq/scripts/")
++SCRIPTS_DIR = SOURCE_INSTALL_SCRIPTS_DIR if SOURCE_INSTALL_SCRIPTS_DIR.is_dir() else Path("/usr/share/auto-cpufreq/scripts/")
  CPUS = os.cpu_count()
  
  
-@@ -306,16 +306,16 @@ def cpufreqctl():
+@@ -359,16 +359,16 @@ def cpufreqctl():
      """
      deploy cpufreqctl.auto-cpufreq script
      """
@@ -42,7 +42,7 @@ index f03e7de..23ad02c 100755
  
  def footer(l=79): print("\n" + "-" * l + "\n")
  
-@@ -342,12 +342,12 @@ def deploy_daemon():
+@@ -395,12 +395,12 @@ def deploy_daemon():
      auto_cpufreq_stats_path.touch(exist_ok=True)
  
      print("\n* Deploy auto-cpufreq install script")
@@ -59,16 +59,16 @@ index f03e7de..23ad02c 100755
  
      # output warning if gnome power profile is running
      gnome_power_detect_install()
-@@ -357,7 +357,7 @@ def deploy_daemon():
+@@ -410,7 +410,7 @@ def deploy_daemon():
  
      tlp_service_detect() # output warning if TLP service is detected
  
--    call("/usr/local/bin/auto-cpufreq-install", shell=True)
-+    call("/usr/bin/auto-cpufreq-install", shell=True)
+-    return call("/usr/local/bin/auto-cpufreq-install", shell=True)
++    return call("/usr/bin/auto-cpufreq-install", shell=True)
  
  def deploy_daemon_performance():
      print("\n" + "-" * 21 + " Deploying auto-cpufreq as a daemon (performance) " + "-" * 22 + "\n")
-@@ -375,10 +375,10 @@ def deploy_daemon_performance():
+@@ -428,10 +428,10 @@ def deploy_daemon_performance():
      auto_cpufreq_stats_path.touch(exist_ok=True)
  
      print("\n* Deploy auto-cpufreq install script")
@@ -81,7 +81,7 @@ index f03e7de..23ad02c 100755
  
      # output warning if gnome power profile is running
      gnome_power_detect_install()
-@@ -387,11 +387,11 @@ def deploy_daemon_performance():
+@@ -440,11 +440,11 @@ def deploy_daemon_performance():
     
      tlp_service_detect() # output warning if TLP service is detected
  
@@ -95,19 +95,25 @@ index f03e7de..23ad02c 100755
          print("\nauto-cpufreq daemon is not installed.\n")
          sys.exit(1)
  
-@@ -406,10 +406,13 @@ def remove_daemon():
-     tuned_svc_enable()
+@@ -454,7 +454,7 @@ def remove_daemon():
+     # system cleanup succeeds. Restoring competing services before that point
+     # could leave them running alongside an auto-cpufreq daemon that failed to
+     # stop, and would make a failed removal unsafe to retry.
+-    remove_status = call("/usr/local/bin/auto-cpufreq-remove", shell=True)
++    remove_status = call("/usr/bin/auto-cpufreq-remove", shell=True)
+     if remove_status != 0:
+         return remove_status
  
-     # run auto-cpufreq daemon remove script
--    call("/usr/local/bin/auto-cpufreq-remove", shell=True)
-+    call("/usr/bin/auto-cpufreq-remove", shell=True)
+@@ -467,7 +467,11 @@ def remove_daemon():
+     tuned_svc_enable()
  
      # remove auto-cpufreq-remove
 -    os.remove("/usr/local/bin/auto-cpufreq-remove")
 +    os.remove("/usr/bin/auto-cpufreq-remove")
-+
++    
 +    if os.path.exists('/usr/bin/auto-cpufreq-install'):
 +        os.remove('/usr/bin/auto-cpufreq-install')
++
  
      # delete override pickle if it exists
      if os.path.exists(governor_override_state):  os.remove(governor_override_state)

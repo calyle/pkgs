@@ -1,5 +1,3 @@
-diff --git a/scripts/auto-cpufreq.service b/scripts/auto-cpufreq.service
-index 196bae3..355f54e 100644
 --- a/scripts/auto-cpufreq.service
 +++ b/scripts/auto-cpufreq.service
 @@ -1,12 +1,12 @@
@@ -11,9 +9,9 @@ index 196bae3..355f54e 100644
  [Service]
  Type=simple
  User=root
--WorkingDirectory=/opt/auto-cpufreq/venv
--Environment=PYTHONPATH=/opt/auto-cpufreq
--ExecStart=/opt/auto-cpufreq/venv/bin/python /opt/auto-cpufreq/venv/bin/auto-cpufreq --daemon
+-WorkingDirectory=/opt/auto-cpufreq/current/venv
+-Environment=PYTHONPATH=/opt/auto-cpufreq/current
+-ExecStart=/opt/auto-cpufreq/current/venv/bin/python /opt/auto-cpufreq/current/venv/bin/auto-cpufreq --daemon
 +ExecStart=auto-cpufreq --daemon
  Restart=on-failure
  

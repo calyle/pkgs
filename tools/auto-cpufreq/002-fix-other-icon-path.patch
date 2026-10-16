@@ -1,13 +1,11 @@
-diff --git a/auto_cpufreq/gui/objects.py b/auto_cpufreq/gui/objects.py
-index d2a3435..2f01cd3 100644
 --- a/auto_cpufreq/gui/objects.py
 +++ b/auto_cpufreq/gui/objects.py
-@@ -239,7 +239,7 @@ class AboutDialog(Gtk.Dialog):
-         self.add_button("Close", Gtk.ResponseType.CLOSE)
+@@ -717,7 +717,7 @@
          self.set_default_size(400, 350)
+         icon_file = "/opt/auto-cpufreq/current/share/images/icon.png"
+         if not isfile(icon_file):
+-            icon_file = "/usr/local/share/auto-cpufreq/images/icon.png"
++            icon_file = "/usr/share/auto-cpufreq/images/icon.png"
          img_buffer = GdkPixbuf.Pixbuf.new_from_file_at_scale(
--            filename="/usr/local/share/auto-cpufreq/images/icon.png",
-+            filename="/usr/share/auto-cpufreq/images/icon.png",
+             filename=icon_file,
              width=150,
-             height=150,
-             preserve_aspect_ratio=True
