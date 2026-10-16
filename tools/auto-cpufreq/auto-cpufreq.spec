@@ -18,7 +18,6 @@ Source0:        %{name}-%{version}.tar.gz
 Source1:        auto-cpufreq
 Source2:        _auto-cpufreq
 Source3:        auto-cpufreq.fish
-Patch1:         001-fix-icon-n-style-locations.patch
 Patch2:         002-fix-other-icon-path.patch
 Patch3:         003-fix-auto_cpufreq-service.patch
 Patch4:         004-fix-path-in-core.patch
