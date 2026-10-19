@@ -1,5 +1,5 @@
 project name,package name,repo name,author,latest version,mode,branch
-tools,mise,mise,jdx,v2026.10.8,release,main
+tools,mise,mise,jdx,v2026.10.14,release,main
 tools,usage,usage,jdx,v6.12.1,release,main
 tools,zellij,zellij,zellij-org,v0.45.1,release,main
 tools,wezterm,wezterm,wezterm,e2a98e1,commit,main
