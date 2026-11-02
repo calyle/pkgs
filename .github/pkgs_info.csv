@@ -8,7 +8,7 @@ network,sing-geoip,sing-geoip,SagerNet,20261012,release,main
 network,sing-geosite,sing-geosite,SagerNet,20261030132534,release,main
 zsh-users,zsh-completions,zsh-completions,zsh-users,989b232,commit,master
 lost,neofetch,neofetch,dylanaraps,ccd5d9f,commit,master
-tools,neohtop,neohtop,Abdenasser,v1.2.0,release,main
+tools,neohtop,neohtop,Abdenasser,v1.3.0,release,main
 tools,auto-cpufreq,auto-cpufreq,AdnanHodzic,v3.2.0,release,master
 tools,yazi,yazi,sxyazi,v26.9.1,release,main
 tools,ghostty,ghostty,ghostty-org,v1.3.1,tag,main
