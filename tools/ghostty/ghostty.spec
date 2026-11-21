@@ -9,7 +9,9 @@
 
 # Signing key from https://github.com/ghostty-org/ghostty/blob/main/PACKAGING.md
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
+%global zig_public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
 %global common_build_flags -Doptimize=ReleaseFast -Dcpu=baseline -Dpie=true -Dstrip=false -Dversion-string=%{version} %{?_smp_mflags}
+%global appid com.mitchellh.ghostty
 
 
 Name:           ghostty
@@ -33,7 +35,9 @@ BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(oniguruma)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
+BuildRequires:  pkgconfig(egl)
 BuildRequires:  minisign
+BuildRequires:  curl, tar
 Requires:       ghostty-terminfo = %{version}
 Requires:       ghostty-themes = %{version}
 
@@ -224,8 +228,16 @@ Development files for %{name}
 %autosetup
 
 %build
+ZIG_VER=$(curl -s https://ziglang.org/download/index.json | grep -oP '"(\d+\.\d+\.\d+)"' | head -n 1 | tr -d '"')
+PKG="zig-%{_arch}-linux-${ZIG_VER}.tar.xz"
+curl -L -O https://ziglang.org/download/${ZIG_VER}/${PKG}
+curl -L -O https://ziglang.org/download/${ZIG_VER}/${PKG}.minisig
+/usr/bin/minisign -V -m ${PKG} -x ${PKG}.minisig -P %{zig_public_key}
+tar xf "$PKG"
+export ZIG="$(pwd)/${PKG%.tar.xz}/zig"
+"$ZIG" version
 export DESTDIR=%{buildroot}
-zig build %{common_build_flags} --prefix %{_prefix}
+"$ZIG" build %{common_build_flags} --prefix %{_prefix}
 
 #Don't conflict with ncurses-term on F42 and up
 %if 0%{?fedora} >= 42
@@ -235,22 +247,22 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %files
 %license LICENSE
 %{_bindir}/%{name}
-%{_datadir}/applications/com.mitchellh.ghostty.desktop
+%{_datadir}/applications/%{appid}.desktop
 %{_mandir}/man1/*
 %{_mandir}/man5/*
-%{_datadir}/icons/hicolor/128x128/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/128x128@2/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/16x16/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/16x16@2/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/256x256/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/256x256@2/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/32x32/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/32x32@2/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/512x512/apps/com.mitchellh.ghostty.png
-%{_datadir}/icons/hicolor/1024x1024/apps/com.mitchellh.ghostty.png
-%{_datadir}/locale/*/LC_MESSAGES/com.mitchellh.ghostty.mo
-%{_datadir}/dbus-1/services/com.mitchellh.ghostty.service
-%{_datadir}/metainfo/com.mitchellh.ghostty.metainfo.xml
+%{_datadir}/icons/hicolor/128x128/apps/%{appid}.png
+%{_datadir}/icons/hicolor/128x128@2/apps/%{appid}.png
+%{_datadir}/icons/hicolor/16x16/apps/%{appid}.png
+%{_datadir}/icons/hicolor/16x16@2/apps/%{appid}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{appid}.png
+%{_datadir}/icons/hicolor/256x256@2/apps/%{appid}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{appid}.png
+%{_datadir}/icons/hicolor/32x32@2/apps/%{appid}.png
+%{_datadir}/icons/hicolor/512x512/apps/%{appid}.png
+%{_datadir}/icons/hicolor/1024x1024/apps/%{appid}.png
+%{_datadir}/locale/*/LC_MESSAGES/%{appid}.mo
+%{_datadir}/dbus-1/services/%{appid}.service
+%{_datadir}/metainfo/%{appid}.metainfo.xml
 
 %dir %{_datadir}/ghostty
 %dir %{_datadir}/ghostty/shell-integration
@@ -299,7 +311,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_datadir}/ghostty/themes
 
 %files servicemenu
-%{_datadir}/kio/servicemenus/com.mitchellh.ghostty.desktop
+%{_datadir}/kio/servicemenus/%{appid}.desktop
 
 %files nautilus-extension
 %{_datadir}/nautilus-python/extensions/ghostty.py
@@ -323,7 +335,7 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 
 %files systemd
 %dir %{_datadir}/systemd/user
-%{_datadir}/systemd/user/app-com.mitchellh.ghostty.service
+%{_datadir}/systemd/user/app-%{appid}.service
 
 %files terminfo
 %if 0%{?fedora} < 42
@@ -337,7 +349,9 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/ghostty
 %{_prefix}/include/ghostty/vt.h
 %{_prefix}/include/ghostty/vt/*
 %{_prefix}/lib/libghostty-vt.so*
+%{_prefix}/lib/libghostty-vt.a
 %{_prefix}/share/pkgconfig/libghostty-vt.pc
+%{_prefix}/share/pkgconfig/libghostty-vt-static.pc
 
 %changelog
 * DATE Jo Carllyle <96739684+calyle@users.noreply.github.com>
