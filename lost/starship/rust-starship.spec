@@ -9,7 +9,6 @@
 
 %bcond check 1
 
-%global debug_package %{nil}
 %global crate starship
 
 Name:           rust-starship
@@ -21,8 +20,6 @@ License:        ISC
 # LICENSE.dependencies contains a full license breakdown
 URL:            https://github.com/starship/starship
 Source:         %{url}/archive/v%{version}/%{crate}-%{version}.tar.gz
-# Automatically generated patch to strip dependencies and normalize metadata
-Patch:          starship-fix-metadata-auto.diff
 
 BuildRequires:  rust-packaging, git
 
