@@ -9,6 +9,7 @@
 
 %global         _build_id_links none
 %global         debug_package %{nil}
+%global         appid dev.zellij.Zellij
 
 %ifarch         x86_64
 %define         arch amd64
@@ -110,7 +111,8 @@ install -Dm644  -T ./target/%{name}.bash  %{buildroot}%{_datadir}/bash-completio
 install -Dm644  -T ./target/%{name}.fish  %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
 install -Dm644  -T ./target/%{name}.zsh   %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 install -Dm644  -T %{_builddir}/%{name}-%{version}/assets/logo.png         %{buildroot}%{_datadir}/pixmaps/%{name}.png
-install -Dm644  -T %{_builddir}/%{name}-%{version}/assets/%{name}.desktop  %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -Dm644  -T %{_builddir}/%{name}-%{version}/assets/%{appid}.desktop  %{buildroot}%{_datadir}/applications/%{appid}.desktop
+install -Dm644  -t %{buildroot}%{_datadir}/metainfo %{_builddir}/%{name}-%{version}/assets/%{appid}.metainfo.xml
 
 
 install -d -m 0755 %{buildroot}%{_datadir}/%{name}
@@ -124,7 +126,8 @@ cp -av example/themes %{buildroot}%{_datadir}/%{name}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/themes
 %{_datadir}/pixmaps/%{name}.png
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{appid}.desktop
+%{_datadir}/metainfo/%{appid}.metainfo.xml
 
 %files bash-completion
 %{_datadir}/bash-completion/*
